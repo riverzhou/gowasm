@@ -1,31 +1,48 @@
-<!DOCTYPE html>
-
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>Go WebAssembly</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="/wasm_exec.js"></script>
-    <script src="/wasm_add.js"></script>
+	<title>go webassembly - rainbow-mouse</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+	<script src="wasm_exec.js"></script>
+	<script src="wasm_mouse.js"></script>
+	<script>
+		hljs.configure({ tabReplace: '  ' });
+		window.onload = function () {
+			// Go code background
+			fetch('mouse.go').then(res => res.text()).then(res => {
+				let codeEl = document.getElementById("code")
+				codeEl.innerHTML = res.replace(/&/g, "&amp;")
+					.replace(/>/g, "&gt;")
+					.replace(/</g, "&lt;")
+				hljs.highlightBlock(codeEl)
+			})
+		}
+	</script>
+	<style>
+		body,
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+		#mycanvas {
+			position: fixed;
+			opacity: 0.5;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	</style>
 </head>
 
 <body>
-    <h1>WebAssembly</h1>
-    <p>Add two numbers, using WebAssembly calling an add() method written in Go:</p>
-    <input type="number" id="a" value="2" /> + <input type="number" id="b" value="2" /> = <input type="number" id="result" />
-    <button>Calculate</button>
-    <script>
-        const button = document.querySelector('button');
-
-        button.addEventListener('click', event => {
-            var a = parseInt(document.getElementById("a").value);
-            var b = parseInt(document.getElementById("b").value);
-            var res = wasm.exports.multiply(a, b);
-            var sum_box = document.getElementById("result");
-            sum_box.value = res;
-        });
-    </script>
+	<div class="code">
+		<pre><code id="code"></code></pre>
+	</div>
+	<canvas id="mycanvas"></canvas>
+	<div class="control"> </div>
 </body>
 
 </html>
