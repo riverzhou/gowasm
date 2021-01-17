@@ -1,6 +1,6 @@
 'use strict';
 
-const WASM_URL = '/lib/lib.wasm';
+const WASM_URL = '/lib/add.wasm';
 let wasm;
 
 function jsAdd(x, y) {
