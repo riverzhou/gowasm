@@ -1,48 +1,20 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="zh-CN"></html>
 <head>
-	<title>go webassembly - rainbow-mouse</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
-	<script src="wasm_exec.js"></script>
-	<script src="wasm_mouse.js"></script>
-	<script>
-		hljs.configure({ tabReplace: '  ' });
-		window.onload = function () {
-			// Go code background
-			fetch('mouse.go').then(res => res.text()).then(res => {
-				let codeEl = document.getElementById("code")
-				codeEl.innerHTML = res.replace(/&/g, "&amp;")
-					.replace(/>/g, "&gt;")
-					.replace(/</g, "&lt;")
-				hljs.highlightBlock(codeEl)
-			})
-		}
-	</script>
-	<style>
-		body,
-		pre {
-			margin: 0;
-			padding: 0;
-		}
-		#mycanvas {
-			position: fixed;
-			opacity: 0.5;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-		}
-	</style>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>River's Home</title>
 </head>
 
 <body>
-	<div class="code">
-		<pre><code id="code"></code></pre>
-	</div>
-	<canvas id="mycanvas"></canvas>
-	<div class="control"> </div>
+	<h3> 测试一 </h3>
+	<a href="add.html">Add</a>
+	<h3> 测试二 </h3>
+	<a href="canvas.html">Canvas</a>
+	<h3> 测试三 </h3>
+	<a href="mouse.html">Mouse</a>
+	<h3> 测试四 </h3>
+	<a href="markdown.html">MakeDown</a>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 
-all:add canvas 
+all: add canvas 
 
 add:
 	tinygo build -no-debug -o add.wasm -target wasm add.go
