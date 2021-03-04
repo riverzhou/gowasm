@@ -1,11 +1,10 @@
 
-all: add canvas 
+all: mouse
 
-add:
-	tinygo build -no-debug -o add.wasm -target wasm add.go
+mouse:
+	#tinygo build -no-debug -o mouse.wasm -target wasm mouse.go
+	GOOS=js GOARCH=wasm go build -o mouse.wasm  mouse  
 
-canvas:
-	tinygo build -no-debug -o canvas.wasm -target wasm canvas.go
-
-
+clean:
+	rm -rf mouse.wasm
 
