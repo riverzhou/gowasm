@@ -3,10 +3,10 @@
 const WASM_URL = '/lib/lutewasm.wasm';
 let wasm;
 
-function init() {
+async function init() {
     const go = new Go(); // Defined in wasm_exec.js
 
-    WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
+    await WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
         wasm = obj.instance;
         go.run(wasm);
     })
@@ -15,5 +15,7 @@ function init() {
     console.log('wasm loaded');
 }
 
-init();
+init().then(()=>{
+	console.log(Md2Html('**Lute** - A structured markdown engine.'));
+})
 
