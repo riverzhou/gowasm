@@ -6,7 +6,7 @@ let wasm;
 async function init() {
     const go = new Go(); // Defined in wasm_exec.js
 
-    await WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
+    await WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then((obj)=>{
         wasm = obj.instance;
         go.run(wasm);
     })
