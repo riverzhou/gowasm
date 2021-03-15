@@ -6,11 +6,12 @@ let wasm;
 function jsAdd(x, y) {
     return x + y
 }
+
 function init() {
     const go = new Go(); // Defined in wasm_exec.js
 
     go.importObject.env = go.importObject.env || {};
-    go.importObject.env['command-line-arguments.add'] = jsAdd
+    go.importObject.env['main.add'] = jsAdd
 
     WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
         wasm = obj.instance;
